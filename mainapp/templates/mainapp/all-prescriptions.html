@@ -1,0 +1,89 @@
+{% extends 'mainapp/layout.html' %}
+
+{% load static %}
+
+{% load mathfilters %}
+
+
+{% block title %}All Prescriptions{% endblock title %}
+
+
+{% block content %}
+
+<!-- start section content -->
+<div class="content-body">
+    <div class="warper container-fluid">
+        <div class="all_prescriptions main_container">
+            <div class="row page-titles mx-0">
+                <div class="col-sm-6 p-md-0">
+                    <div class="welcome-text">
+                        <h4 class="text-primary">All Prescriptions</h4>
+                    </div>
+                </div>
+                <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item active"><a href="">All Prescription</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header fix-card">
+                            <div class="row">
+                                <div class="col-8">
+                                    <h4 class="card-title"> All Prescriptions </h4>
+                                </div>
+                                <div class="col-4">
+                                    <a href="{% url 'add_prescription' %}" class="btn btn-primary float-end">New
+                                        Prescription </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example1" class="display nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Patient Name</th>
+                                            <th>Date</th>
+                                            <th>Content</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for presc in prescriptions %}
+                                        <tr>
+                                            <td>Pr-00{{presc.id}}</td>
+                                            <td>{{presc.patient.get_full_name}}</td>
+                                            <td>{{presc.created_at}}</td>
+                                            <td> {{presc.drug_list|length|intdiv:5}} Drug(s) | {{presc.test_list|length|intdiv:5}} Test(s) </td>
+                                            <td>
+                                                <a href='#' class='mr-4'>
+                                                    <span class='fa fa-eye' aria-hidden='true'></span>
+                                                </a>
+                                                {% comment %} <a class='mr-4'>
+                                                    <span class='fas fa-print'></span>
+                                                </a>
+                                                <a class='mr-4 delet'>
+                                                    <span class='fas fa-trash-alt'></span>
+                                                </a> {% endcomment %}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End section content -->
+
+{% endblock content %}

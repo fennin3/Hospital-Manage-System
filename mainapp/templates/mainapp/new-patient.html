@@ -1,0 +1,222 @@
+{% extends 'mainapp/layout.html' %}
+
+{% load static %}
+
+{% block title %}New Patient{% endblock title %}
+
+
+{% block content %}
+
+  <!-- start section content -->
+  <div class="content-body">
+    <div class="warper container-fluid">
+        <div class="new-patients main_container">
+            <div class="row page-titles mx-0">
+                <div class="col-sm-6 p-md-0">
+                    <div class="welcome-text">
+                        <h4 class="text-primary">New Patient</h4>
+                    </div>
+                </div>
+                <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item active"><a href="">New Patient</a></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Personal Information</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-xl-4">
+                                            <div class="form-group row widget-3">
+                                                <div class="col-lg-10">
+                                                    <div class="form-input">
+                                                        <label class="labeltest" for="file-ip-1">
+                                                            <span> Drop image here or click to upload. </span>
+                                                        </label>
+                                                        <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);" name="avatar">
+                                                        <div class="preview">
+                                                            <img id="file-ip-1-preview" src="#" alt="img">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="First Name" name="first_name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Last name" name="last_name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" placeholder="Email" name="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Mobile No." name="mobile_number" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="Date Of Birth" name="dob" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="form-control form-select" name="marital_status" required>
+                                                    <option> Marital status </option>
+                                                    <option>Married</option>
+                                                    <option>Unmarried</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="form-control form-select" name="sex" required>
+                                                    <option>Sex</option>
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="form-control form-select" name="blood_group" required>
+                                                    <option>Blood Group</option>
+                                                    <option>A+</option>
+                                                    <option>A-</option>
+                                                    <option>B+</option>
+                                                    <option>B-</option>
+                                                    <option>O+</option>
+                                                    <option>O-</option>
+                                                    <option>AB+</option>
+                                                    <option>AB-</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-4"></div>
+                                        <div class="col-xl-4">
+                                            <div class="form-group row">
+                                                <div class="col-lg-12">
+                                                    <input type="text" class="form-control" placeholder="Patient Weight" name="weight" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <div class="form-group row">
+                                                <div class="col-lg-12">
+                                                    <input type="text" class="form-control" placeholder="Patient Height" name="height" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                        
+                                        
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-xl-4"></div>
+                                        <div class="col-xl-8">
+                                            <div class="form-group row">
+                                                <div class="col-lg-12">
+                                                    <textarea class="form-control" placeholder="Address" rows="4" name="address" required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-4">
+            
+                                        </div>
+                                        <div class="col-xl-8">
+                                            <div class="form-group">
+                                                {% comment %} <textarea class="form-control" placeholder="Patient History" rows="4"></textarea> {% endcomment %}
+                                            </div>
+                                            <div class="form-group text-right">
+                                                <button type="submit" class="btn btn-primary float-end">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% comment %} <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Medical Information</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label class="form-label">known diseases</label>
+                                                <select class="form-control form-select">
+                                                    <option>Type 1 Diabetes</option>
+                                                    <option>Multiple Sclerosis</option>
+                                                    <option>Rheumatoid Arthritis</option>
+                                                    <option>Allergies & Asthma</option>
+                                                </select>
+                                                <div class="col-lg-12">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Period</label>
+                                                <input class="form-control" type="text" placeholder="Period">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label class="form-label"> Family History </label>
+                                                <select class="form-control form-select">
+                                                    <option>Mother</option>
+                                                    <option>Father</option>
+                                                    <option>Brother</option>
+                                                    <option>Sister</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Diseases</label>
+                                                <select class="form-control form-select">
+                                                    <option>Type 1 Diabetes</option>
+                                                    <option>Multiple Sclerosis</option>
+                                                    <option>Rheumatoid Arthritis</option>
+                                                    <option>Allergies & Asthma</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-right">
+                                        <button type="submit" class="btn btn-primary float-end ">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+        </div>
+    </div>
+</div>
+<!-- End section content -->
+
+{% endblock content %}

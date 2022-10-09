@@ -1,0 +1,150 @@
+{% extends 'mainapp/layout.html' %}
+
+{% load static %}
+
+{% block title %}Calendar{% endblock title %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/plugins/calendar/fullcalendar.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/plugins/calendar/fullcalendar.print.min.css' %}" media="print">
+{% endblock style %}
+
+
+{% block content %}
+
+  <!-- start section content -->
+  <div class="content-body">
+    <div class="warper container-fluid">
+        <div class="new_appointment main_container">
+            <div class="row page-titles mx-0">
+                <div class="col-sm-6 p-md-0">
+                    <div class="welcome-text">
+                        <h4 class="text-primary">Calender</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="row">
+
+                                <!-- start draggable events -->
+                                <div class="col-lg-3">
+                                    <div class="draggable-events">
+                                        <h4 class="box-title">Draggable Events</h4>
+                                        <div class="box-body bottom-event">
+                                            <!-- the events -->
+                                            <div id="external-events" class="external-events">
+                                                <div class="external-event bg-calander-1 btn">My Calendar</div>
+                                                <div class="external-event bg-calander-2 btn">Company</div>
+                                                <div class="external-event bg-calander-3 btn">Family</div>
+                                                <div class="external-event bg-calander-4 btn">Friend</div>
+                                                <div class="external-event bg-calander-5 btn">Travel</div>
+                                                <div class="external-event bg-calander-6 btn">etc</div>
+                                                <div class="external-event bg-calander-7 btn">Birthdays</div>
+                                                <div class="external-event bg-calander-8 btn">National Holidays</div>
+                                                <div class="checkbox">
+                                                    <label for="drop-remove">
+                                                        <input type="checkbox" id="drop-remove">
+                                                        remove after drop
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="create-event">
+                                        <div class="event-header">
+                                            <h3 class="box-title">Create Event</h3>
+                                        </div>
+                                        <div class="event-body">
+                                            <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                                                <ul class="fc-color-picker" id="color-chooser">
+                                                    <li>
+                                                        <a class="text-aqua" href="#">
+                                                            <i class="fa fa-square"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="text-blue" href="#">
+                                                            <i class="fa fa-square"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="text-light-blue" href="#">
+                                                            <i class="fa fa-square"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="text-teal" href="#">
+                                                            <i class="fa fa-square"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="text-yellow" href="#">
+                                                            <i class="fa fa-square"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="text-orange" href="#">
+                                                            <i class="fa fa-square"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="text-green" href="#">
+                                                            <i class="fa fa-square"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="text-lime" href="#">
+                                                            <i class="fa fa-square"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="input-group add-event">
+                                                <input id="new-event" type="text" class="form-control" placeholder="Event Title">
+                                                <div class="input-group-btn">
+                                                    <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Add</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- start draggable events -->
+
+
+                                <!-- The Calendar -->
+                                <div class="col-lg-9 m-t-2">
+                                    <div class="col-bor box box-primary">
+                                        <div class="box-body no-padding">
+                                            <div id="calendar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End The Calendar -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End section content -->
+
+{% endblock content %}
+
+
+{% block script %}
+
+<script src="{% static 'assets/plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+
+<!-- Calendar -->
+<script src="{% static 'assets/plugins/calendar/fullcalendar.min.js' %}"></script>
+<script src="{% static 'assets/plugins/calendar/calendar-init.js' %}"></script>
+<script src="{% static 'assets/plugins/jquery/jquery3-2.1.min.js' %}"></script>
+
+{% endblock script %}

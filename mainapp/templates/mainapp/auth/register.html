@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from tabib.inaikas.com/demo/page-register-one.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Apr 2022 22:51:45 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    {% include 'mainapp/css.html' %}
+</head>
+
+<body>
+    {% include 'mainapp/messages.html' %}
+    <div id="main-wrapper" class="show">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-7 p-0 b-center bg-size">
+                    <img class="img-fluid" src="{% static 'assets/images/bg-register.jpg' %}" alt="tabib app">
+                </div>
+                <div class="col-xl-5 p-0">
+                    <div class="login-tabib">
+                        <div>
+                            <div class="text-center">
+                                <a class="logo" href="{% url 'home' %}">
+                                    <img class="img-fluid" src="{% static 'assets/images/download.png' %}" alt="loogin page">
+                                </a>
+                            </div>
+                            <div class="login-main">
+                                <form class="theme-form" action="{% url 'register' %}"  method="POST">
+                                    {% csrf_token %}
+                                    <h4>Create your account</h4>
+                                    <p>Enter your personal details to create account</p>
+                                    <div class="form-group m-b-10">
+                                        <label class="col-form-label pt-0">Your Name</label>
+                                        <div class="row g-2">
+                                            <div class="col-md-12 col-lg-6">
+                                                <div class="form-group mb-0">
+                                                    <input class="form-control" type="text" placeholder="First name" name="first_n">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-lg-6">
+                                                <div class="form-group mb-0">
+                                                    <input class="form-control" type="text" placeholder="Last name" name="last_n">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-b-10">
+                                        <label class="col-form-label">Username</label>
+                                        <input class="form-control" type="text" placeholder="Username" name="username">
+                                    </div>
+                                    <div class="form-group m-b-10">
+                                        <label class="col-form-label">Email Address</label>
+                                        <input class="form-control" type="email" placeholder="example@gmail.com" name="email">
+                                    </div>
+                                    <div class="form-group m-b-10">
+                                        <label class="col-form-label">Password</label>
+                                        <div class="form-input position-relative">
+                                            <input class="form-control" type="password" placeholder="*********" name="password">
+                                            <div class="show-hide"><span class="show"></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <div class="checkbox p-0">
+                                            <input id="checkbox1" type="checkbox">
+                                            <label class="text-muted" for="checkbox1">Agree with<a
+                                       class="ms-2 text-primary" href="#">Privacy Policy</a></label>
+                                        </div>
+                                        <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                                    </div>
+                                    <p class="mt-4 mb-0">Already have an account?<a class="ms-2 text-primary" href="{% url 'login' %}">Sign in</a>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {% include 'mainapp/js.html' %}
+
+</body>
+
+
+<!-- Mirrored from tabib.inaikas.com/demo/page-register-one.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Apr 2022 22:51:45 GMT -->
+</html>

@@ -1,0 +1,258 @@
+{% extends 'mainapp/layout.html' %}
+
+{% load static %}
+
+{% block title %}Add Prescription{% endblock title %}
+
+{% block content %}
+
+<!-- start section content -->
+<div class="content-body">
+    <div class="warper container-fluid">
+        <div class="new_prescription main_container">
+            <div class="row page-titles mx-0">
+                <div class="col-sm-6 p-md-0">
+                    <div class="welcome-text">
+                        <h4 class="text-primary">New Prescription</h4>
+                        <p class="mb-0">Add New Prescription</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item active"><a href="">New Prescription</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <form method="POST" action="">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header">
+                            <h4 class="card-title"> Patient informations </h4>
+                        </div>
+                        <div class="card-body">
+                                
+                                <div class="form-group">
+                                    <select class="form-control form-select" name="patient">
+                                        <option>Select Patient...</option>
+                                        {% for patient in patients %}
+                                        <option value="{{patient.id}}">{{patient.get_full_name}}</option>
+                                       
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group text-center d-none">
+                                    <img src="{% static 'assets/images/patient-icon.png' %}" class="img-profile rounded-circle img-fluid" alt="img">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header">
+                            <h4 class="card-title">Drugs list</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="drugslist">
+                                <div class="row" id="drug01">
+                                    <div class="col-md-2">
+                                        <div class="form-group"><input type="text" class="form-control" placeholder="Type"></div>
+                                    </div>
+                                    <div class="col-md-6"> 
+                                    <div class="form-group">
+                                    <select class="form-control form-select" name="drug1"> <option value="">Select Drug...</option> {% for drug in drugs %}<option value="{{drug.id}}">{{drug.trade_name}}</option> {% endfor %}</select> 
+                                    
+                                    </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group"> <input type="text" class="form-control" placeholder="Mg/Ml" name="drugUnit1" value="Mg/Ml"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <input type="text" class="form-control" placeholder="Dose" name="dose1"> </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <input type="text" class="form-control" placeholder="Duration" name="duration1"> </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group"> <input type="text" class="form-control" placeholder="Advice/Comment" name="note1"></div>
+                                    </div>
+                                    <hr/>
+                                </div>
+                                
+
+
+                                <div class="row" id="drug02">
+                                    <div class="col-md-2">
+                                        <div class="form-group"><input type="text" class="form-control" placeholder="Type"></div>
+                                    </div>
+                                    <div class="col-md-6"> 
+                                    <div class="form-group">
+                                    <select class="form-control form-select" name="drug2"> <option value="">Select Drug...</option> {% for drug in drugs %}<option value="{{drug.id}}">{{drug.trade_name}}</option> {% endfor %}</select> 
+                                    
+                                    </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group"> <input type="text" class="form-control" placeholder="Mg/Ml" name="drugUnit2"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <input type="text" class="form-control" placeholder="Dose" name="dose2"> </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <input type="text" class="form-control" placeholder="Duration" name="duration2"> </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group"> <input type="text" class="form-control" placeholder="Advice/Comment" name="note2"></div>
+                                    </div>
+                                    <hr/>
+                                </div>
+                                
+
+
+                                <div class="row" id="drug03">
+                                    <div class="col-md-2">
+                                        <div class="form-group"><input type="text" class="form-control" placeholder="Type"></div>
+                                    </div>
+                                    <div class="col-md-6"> 
+                                    <div class="form-group">
+                                    <select class="form-control form-select" name="drug3"> <option value="">Select Drug...</option> {% for drug in drugs %}<option value="{{drug.id}}">{{drug.trade_name}}</option> {% endfor %}</select> 
+                                    
+                                    </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group"> <input type="text" class="form-control" placeholder="Mg/Ml" name="drugUnit3"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <input type="text" class="form-control" placeholder="Dose" name="dose3"> </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <input type="text" class="form-control" placeholder="Duration" name="duration3"> </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group"> <input type="text" class="form-control" placeholder="Advice/Comment" name="note3"></div>
+                                    </div>
+                                    <hr/>
+                                </div>
+                                
+
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary float-end" onclick="displayDrugforms()">Add Drug</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header">
+                            <h4 class="card-title">Tests list</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="addTest">
+                                <div class="row" id="test01">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <select class="form-control form-select" name="test1">
+                                                <option value="">Select Test...</option>
+                                                {% for test in tests %}
+                                                <option value="{{test.id}}">{{test.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Description" name="testdes1">
+                                        </div>
+                                    </div>
+                                    <hr/>
+
+                                </div>
+
+                                <div class="row" id="test02" style="">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <select class="form-control form-select" name="test2">
+                                                <option>Select Test...</option>
+                                                <option>Scanner thoracique</option>
+                                                <option>Covid 19</option>
+                                                <option>dsdsfd</option>
+                                                <option>wqd</option>
+                                                <option>asdfsf</option>
+                                                <option>fgg</option>
+                                                <option>uohl</option>
+                                                <option>Pueba wilson</option>
+                                                <option>jjjhj</option>
+                                                <option>hh</option>
+                                                <option>Badanie Oberon</option>
+                                                <option>sdsadsa</option>
+                                                <option>test</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Description" name="testdes2">
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                </div>
+
+                                <div class="row" id="test03">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <select class="form-control form-select" name="test3">
+                                                <option>Select Test...</option>
+                                                <option>Scanner thoracique</option>
+                                                <option>Covid 19</option>
+                                                <option>dsdsfd</option>
+                                                <option>wqd</option>
+                                                <option>asdfsf</option>
+                                                <option>fgg</option>
+                                                <option>uohl</option>
+                                                <option>Pueba wilson</option>
+                                                <option>jjjhj</option>
+                                                <option>hh</option>
+                                                <option>Badanie Oberon</option>
+                                                <option>sdsadsa</option>
+                                                <option>test</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Description" name="testdes3">
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary float-end" id="butonAddTest1" onclick="displayTestforms()">Add Test</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary float-end">Create
+                                    Prescription</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        </div>
+    </div>
+</div>
+<!-- End section content -->
+
+{% endblock content %}

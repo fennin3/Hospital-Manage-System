@@ -1,0 +1,67 @@
+{% extends 'mainapp/layout.html' %}
+
+{% load static %}
+
+
+{% block title %}Add Test{% endblock title %}
+
+{% block content %}
+
+
+        <!-- start section content -->
+        <div class="content-body">
+            <div class="warper container-fluid">
+                <div class="add_Test main_container">
+                    <div class="row page-titles mx-0">
+                        <div class="col-sm-6 p-md-0">
+                            <div class="welcome-text">
+                                <h4 class="text-primary">Add Test</h4>
+                                <p class="mb-0">Add New Test</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                                <li class="breadcrumb-item active"><a href="">Add Test</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-header">
+                                    <h4 class="card-title">Add Test</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="basic-form">
+                                        <form method="POST" action="">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Test Name" name="name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Description" name="description" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-12">
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary float-end">Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End section content -->
+
+{% endblock content %}

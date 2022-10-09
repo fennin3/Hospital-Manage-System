@@ -1,0 +1,426 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from tabib.inaikas.com/demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Apr 2022 22:50:44 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock title %}</title>
+    <!-- Favicon icon -->
+    {% include "mainapp/css.html" %}
+</head>
+
+<body>
+    {% include 'mainapp/messages.html' %}
+    <div id="main-wrapper" class="show">
+
+
+        <!-- start logo components -->
+        <div class="nav-header">
+            <div class="brand-logo">
+                <a href="{% url 'home' %}"> <img class="logo-tabib" src="{% static 'assets/images/download.png' %}" alt=""></a>
+                {% comment %} <a href="{% url 'home' %}"><img class="brand-title" src="{% static 'assets/images/logo.png' %}" alt=""></a> {% endcomment %}
+            </div>
+        </div>
+        <!-- End logo components -->
+
+
+        <!-- start section sidebar -->
+        <aside class="left-panel nicescroll-box">
+            <nav class="navigation">
+                <ul class="list-unstyled main-menu">
+                    <li class="has-submenu active">
+                        <a href="{% url 'home' %}">
+                            <i class="fas fa-th-large"></i>
+                            <span class="nav-label">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#" class="has-arrow mm-collapsed">
+                            <i class="fas fa-user-md"></i>
+                            <span class="nav-label">Doctors</span>
+                        </a>
+                        <ul class="list-unstyled mm-collapse">
+                            {% comment %} <li><a href="add-doctor.html">Add Doctor</a></li> {% endcomment %}
+                            <li><a href="{% url 'all_doctors' %}">All Doctors</a></li>
+                            {% comment %} <li> <a href="doctor-profile.html">Doctors Profile</a> </li> {% endcomment %}
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#" class="has-arrow mm-collapsed">
+                            <i class="fas fa-users"></i>
+                            <span class="nav-label">Patients</span>
+                        </a>
+                        <ul class="list-unstyled mm-collapse">
+                            <li><a href="{% url 'new_patient' %}">New Patient</a></li>
+                            <li><a href="{% url 'all_patient' %}">All Patients</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="{% url 'new_appointment' %}">
+                            <i class="fas fa-calendar-plus"></i>
+                            <span class="nav-label">Appointment</span>
+                        </a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#" class="has-arrow mm-collapsed">
+                            <i class="fas fa-book-medical"></i>
+                            <span class="nav-label">Prescriptions</span>
+                        </a>
+                        <ul class="list-unstyled mm-collapse">
+                            <li><a href="{% url 'add_prescription' %}">New Prescription</a></li>
+                            <li><a href="{% url 'all_prescription' %}">All Prescriptions</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="{% url 'add_drug' %}">
+                            <i class="fas fa-pills"></i>
+                            <span class="nav-label">Add Drug</span>
+                        </a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#" class="has-arrow mm-collapsed">
+                            <i class="fas fa-heartbeat"></i>
+                            <span class="nav-label">Tests</span>
+                        </a>
+                        <ul class="list-unstyled mm-collapse">
+                            <li><a href="{% url 'add_test' %}">Add Test</a></li>
+                            <li><a href="{% url 'all_test' %}">All Tests</a></li>
+                        </ul>
+                    </li>
+                    {% comment %} <li class="has-submenu">
+                        <a href="{% url 'calendar' %}">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span class="nav-label">calendar</span>
+                        </a>
+                    </li> {% endcomment %}
+                    <li class="has-submenu">
+                        <a href="{% url 'reports' %}">
+                            <i class="fas fa-chart-pie"></i>
+                            <span class="nav-label">Reports</span>
+                        </a>
+                    </li>
+                    {% comment %} <li class="has-submenu">
+                        <a href="#" class="has-arrow mm-collapsed">
+                            <i class="fas fa-file-invoice"></i>
+                            <span class="nav-label">Billing</span>
+                        </a>
+                        <ul class="list-unstyled mm-collapse">
+                            <li><a href="create-invoice.html">Create Invoice</a></li>
+                            <li><a href="billing-list.html">Billing List</a></li>
+                        </ul>
+                    </li> {% endcomment %}
+                    <li class="has-submenu">
+                        <a href="#" class="has-arrow mm-collapsed">
+                            <i class="fas fa-cog"></i>
+                            <span class="nav-label">Settings</span>
+                        </a>
+                        <ul class="list-unstyled mm-collapse">
+                            <li><a href="{% url 'doctor_settings' %}">Doctor Settings</a></li>
+                            <li><a href="{% url 'prescription_settings' %}">Prescription Settings</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </nav>
+            <div class="sidebar-widgets">
+                <div class="top-sidebar box-shadow mx-25 m-b-30 p-b-20 text-center">
+                    <a href="{% url 'new_appointment' %}">
+                        <img src="{% static 'assets/images/appointement.svg' %}" class="side-img" alt="img">
+                    </a>
+                    <a href="{% url 'new_appointment' %}">
+                        <h4 class="text-primary mb-0">Make an Appointments</h4>
+                    </a>
+                </div>
+                <div class="copyright text-center">
+                    <p class="mb-0"> Tabib Dashboard</p>
+                    <p class="mb-0"> © 2021 </p>
+                </div>
+            </div>
+        </aside>
+        <!-- End section sidebar -->
+
+
+        <!-- start section header -->
+        <div class="header">
+            <header class="top-head container-fluid">
+                <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="line"></span><span class="line"></span><span class="line"></span>
+                    </div>
+                    <div class="left-header content-header__menu">
+                        <ul class="list-unstyled">
+                            <li class="nav-link btn">
+                                <a href="{% url 'new_appointment' %}"><i class="far fa-calendar-check"></i> <span> Make an appointment</span></a>
+                            </li>
+                            <li class="nav-link btn">
+                                <a href="{% url 'add_prescription' %}"><i class="far fa-file-alt"></i> <span> Write a prescription</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="header-right">
+                    {% if user.authenticated %}
+                        <div class="fullscreen notification_dropdown">
+                            <div class="full">
+                                <a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()">
+                                    <i class="fas fa-expand"></i>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% comment %} <div class="notification_dropdown">
+                        <div class="cart-wrapper">
+                            <div class="cart-icon">
+                                <a class="cart-control" href="#">
+                                    <i class="fas fa-bell"></i>
+                                    <div class="pulse-css"></div>
+                                </a>
+                            </div>
+                            <div class="cart-dropdown-form dropdown-container">
+                                <div class="form-content">
+                                    <div class="widget-media main-scroll nicescroll-box">
+                                        <ul class="timeline">
+                                            <li>
+                                                <h6 class="mb-0">Notitications</h6>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-panel">
+                                                    <div class="media mr-2">
+                                                        <img alt="image" src="{% static 'assets/images/avtar/1.jpg' %}">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6 class="mb-1 ">Incoming Message</h6>
+                                                        <small class="d-block">29 July 2020 - 02:26 PM</small>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-panel">
+                                                    <div class="media mr-2 media-info">
+                                                        <img alt="image" src="{% static 'assets/images/avtar/1.jpg' %}">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6 class="mb-1">You got a new email</h6>
+                                                        <small class="d-block">29 July 2020 - 02:26 PM</small>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-panel">
+                                                    <div class="media mr-2 media-success">
+                                                        <img alt="image" src="{% static 'assets/images/avtar/1.jpg' %}">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6 class="mb-1">Hello world!</h6>
+                                                        <small class="d-block">29 July 2020 - 02:26 PM</small>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-panel">
+                                                    <div class="media mr-2">
+                                                        <img alt="image" src="{% static 'assets/images/avtar/1.jpg' %}">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6 class="mb-1">Beep Boop. Beee...</h6>
+                                                        <small class="d-block">29 July 2020 - 02:26 PM</small>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-panel">
+                                                    <div class="media mr-2 media-danger">
+                                                        <img alt="image" src="{% static 'assets/images/avtar/1.jpg' %}">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6 class="mb-1">Hello world!</h6>
+                                                        <small class="d-block">29 July 2020 - 02:26 PM</small>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="timeline-panel">
+                                                    <div class="media mr-2 media-primary">
+                                                        <img alt="image" src="{% static 'assets/images/avtar/1.jpg' %}">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6 class="mb-1">Incoming Message</h6>
+                                                        <small class="d-block">29 July 2020 - 02:26 PM</small>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <a class="all-notification btn btn-primary" href="#">
+                                        See all notifications
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+
+                    {% if user.authenticated %}
+                    <div class="my-account-wrapper">
+                        <div class="account-wrapper">
+                            <div class="account-control">
+                                <a class="login header-profile" href="#" title="Sign in">
+                                    <div class="header-info">
+                                        <span>Dr Roberts</span>
+                                        <small>Admin</small>
+                                    </div>
+                                    <img src="{% static 'assets/images/client.jpg' %}" alt="people">
+                                </a>
+                                <div class="account-dropdown-form dropdown-container">
+                                    <div class="form-content">
+                                        <a href="{% url 'doctor_settings' %}">
+                                            <i class="far fa-user"></i>
+                                            <span class="ml-2">Profile</span>
+                                        </a>
+                                       
+                                        <a href="{% url 'logout' %}">
+                                            <i class="fas fa-sign-in-alt"></i>
+                                            <span class="ml-2">Logout </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    {% else %}
+                    <a style="padding-right: 5px;" href="{% url 'login' %}">Login</a> |
+                    <a style="padding-left: 5px;" href="{% url 'register' %}">Register</a>
+
+                    {% endif %}
+                </div>
+            </header>
+            {% include 'mainapp/messages.html' %}
+        </div>
+        <!-- End section header -->
+
+
+        <div class="content-body">
+            <div class="warper container-fluid">
+                <div class="all-patients main_container">
+                    <div class="row page-titles mx-0">
+                        <div class="col-sm-6 p-md-0">
+                            <div class="welcome-text">
+                                <h4 class="text-primary">Doctors List</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                                <li class="breadcrumb-item active"><a href="">Doctors List</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="widget-media list-doctors best-doctor">
+
+                                {% if doctors.count > 0 %}
+                                    <div class="timeline row">
+                                        {% for doctor in doctors %}
+                                            <div class="col-sm-6 col-lg-4">
+                                                <div class="timeline-panel card p-4 mb-4">
+                                                    <div class="media">
+                                                        <img alt="image" src="{{doctor.avatar.url}}">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <a href="#">
+                                                            <h4 class="mb-2">{{doctor.title}}. {{doctor.user.get_full_name}}</h4>
+                                                        </a>
+                                                        <p class="mb-2">{{doctor.specialization}}</p>
+                                                        <div class="star-review">
+                                                            <i class="fa fa-star text-orange"></i>
+                                                            <i class="fa fa-star text-orange"></i>
+                                                            <i class="fa fa-star text-orange"></i>
+                                                            <i class="fa fa-star text-gray"></i>
+                                                            <i class="fa fa-star text-gray"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="btn-group-style-1">
+                                                        <div class="btn-content">
+                                                            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="fas fa-ellipsis-v"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <div class="form-content">
+                                                                    <a href="{% url 'doctor_profile' doctor.id %}">
+                                                                        <span class="ml-2">View Profile</span>
+                                                                    </a>
+                                                                    <a href="#">
+                                                                        <span class="ml-2">Edit</span>
+                                                                    </a>
+                                                                    <a href="#">
+                                                                        <span class="ml-2">Delete </span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                <p class="pt-5 mb-5 text-center">No Data</p>
+
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+
+        <!-- start section footer -->
+        <div class="footer">
+            <div class="copyright">
+                <p class="mb-0">Copyright © 2022
+                </p>
+            </div>
+        </div>
+        <!-- End section footer -->
+
+
+    </div>
+
+
+       <!-- JQuery v3.5.1 -->
+       <script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+
+       <!-- popper js -->
+       <script src="{% static 'assets/plugins/popper/popper.min.js' %}"></script>
+   
+       <!-- Bootstrap -->
+       <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+   
+       <!-- Moment -->
+       <script src="{% static 'assets/plugins/moment/moment.min.js' %}"></script>
+   
+       <!-- Date Range Picker -->
+       <script src="{% static 'assets/plugins/daterangepicker/daterangepicker.min.js' %}"></script>
+   
+       <!-- Datatable -->
+       <script src="{% static 'assets/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+       <script src="{% static 'assets/js/init-tdatatable.js' %}"></script>
+   
+       <!-- Main Custom JQuery -->
+       <script src="{% static 'assets/js/toggleFullScreen.js' %}"></script>
+       <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
+
+<!-- Mirrored from tabib.inaikas.com/demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Apr 2022 22:51:22 GMT -->
+</html>
+
+
