@@ -73,7 +73,7 @@ def register(request):
 
             user.set_password(password)
             user.save()
-            publish('user',{'first_name':first_name,'last_name':last_name,'username':username,'email':email,'password':password,'who':'node1'})
+            # publish('user',{'first_name':first_name,'last_name':last_name,'username':username,'email':email,'password':password,'who':'node1'})
             messages.success(request, "Account has been created")
             return redirect('login')
     return render(request, 'mainapp/auth/register.html')
@@ -98,17 +98,14 @@ def new_appointment(request):
         form = AppointmentCreateForm(request.POST)
         if form.is_valid():
             form.save()
-            data = form.cleaned_data
-            data['who'] = 'node1'
-            publish('appt',data)
+            # data = form.cleaned_data
+            # data['who'] = 'node1'
+            # publish('appt',data)
             messages.success(request,"Appointment has been created successfully")
-
+            save_sql_queries(connections['default'].queries[-1], 'appt')
             config = SiteConfiguration.get_solo()
             if config.sync_data_realtime:
-                save_sql_queries(connections['default'].queries[-1], 'appt')
                 publish()
-            else:
-                save_sql_queries(connections['default'].queries[-1], 'appt')
             return redirect(request.META['HTTP_REFERER'])
         else:
             # print(form)
@@ -128,13 +125,12 @@ def update_appt_status(request, id):
     value = request.POST.get('status')
     appt.status = value
     appt.save()
-    publish('appt_update',{'who':'node1', 'id':id,'status':value})
+    # publish('appt_update',{'who':'node1', 'id':id,'status':value})
+    save_sql_queries(connections['default'].queries[-1], 'appt')
     config = SiteConfiguration.get_solo()
     if config.sync_data_realtime:
-        save_sql_queries(connections['default'].queries[-1], 'appt')
+        
         publish()
-    else:
-        save_sql_queries(connections['default'].queries[-1], 'appt')
     messages.success(request, "Appointment status has been updated successfully")
     return redirect(request.META['HTTP_REFERER'])
 
@@ -186,20 +182,18 @@ def add_prescription(request):
                 test_list = test_list
             )
             prescription.save()
-            data = {
-                'who':'node1',
-                'patient':patient,
-                'doctor': request.user.profile.id,
-                'drug_list':drug_list,
-                'test_list':test_list
-            }
-            publish('prescription',data)
+            # data = {
+            #     'who':'node1',
+            #     'patient':patient,
+            #     'doctor': request.user.profile.id,
+            #     'drug_list':drug_list,
+            #     'test_list':test_list
+            # }
+            # publish('prescription',data)
+            save_sql_queries(connections['default'].queries[-1], 'pres')
             config = SiteConfiguration.get_solo()
             if config.sync_data_realtime:
-                save_sql_queries(connections['default'].queries[-1], 'pres')
                 publish()
-            else:
-                save_sql_queries(connections['default'].queries[-1], 'pres')
             messages.success(request, "Precription has been created successfully")
             return redirect('all_prescription')
         except Exception as e:
@@ -226,16 +220,11 @@ def new_patient(request):
         patient = PatientsCreateForm(request.POST,request.FILES)
         if patient.is_valid():
             patient.save()
-            data = patient.data
-            data['who'] = 'node1'
-            publish('new_patient', data)
-            
+
+            save_sql_queries(connections['default'].queries[-1], 'pat')
             config = SiteConfiguration.get_solo()
             if config.sync_data_realtime:
-                save_sql_queries(connections['default'].queries[-1], 'pat')
                 publish()
-            else:
-                save_sql_queries(connections['default'].queries[-1], 'pat')
             messages.success(request, "Patient has been created successfully")
             return redirect('all_patient')
         else:
@@ -266,13 +255,10 @@ def update_patient(request, id):
         patient.address = request.POST.get('address')
         patient.avatar = request.FILES.get('avatar', None)
         patient.save()
-
+        save_sql_queries(connections['default'].queries[-1], 'pat')
         config = SiteConfiguration.get_solo()
         if config.sync_data_realtime:
-            save_sql_queries(connections['default'].queries[-1], 'pat')
             publish()
-        else:
-            save_sql_queries(connections['default'].queries[-1],'pat')
         messages.success(request, "Patient details has been updated successfully")
         return  redirect(request.META['HTTP_REFERER'])
     except Exception as e:
@@ -286,11 +272,11 @@ def delete_patient(request, id):
     patient.delete()
 
     config = SiteConfiguration.get_solo()
+    save_sql_queries(connections['default'].queries[-1], 'pat')
     if config.sync_data_realtime:
-        save_sql_queries(connections['default'].queries[-1], 'pat')
+        
         publish()
-    else:
-        save_sql_queries(connections['default'].queries[-1], 'pat')
+
     return redirect(request.META['HTTP_REFERER'])
 
 @login_required(login_url='login')
@@ -299,13 +285,11 @@ def add_test(request):
         form = TestCreateForm(request.POST)
         if form.is_valid():
             form.save()
-
+            save_sql_queries(connections['default'].queries[-1], 'test')
             config = SiteConfiguration.get_solo()
             if config.sync_data_realtime:
-                save_sql_queries(connections['default'].queries[-1], 'test')
+                
                 publish()
-            else:
-                save_sql_queries(connections['default'].queries[-1],'test')
             messages.success(request, "Test has been added successfully")
             return redirect('all_test')
         else:
@@ -326,13 +310,12 @@ def update_test(request, id):
     test.name = request.POST.get('name')
     test.description = request.POST.get('description')
     test.save()
-
+    save_sql_queries(connections['default'].queries[-1], 'test')
     config = SiteConfiguration.get_solo()
     if config.sync_data_realtime:
-        save_sql_queries(connections['default'].queries[-1], 'test')
+        
         publish()
-    else:
-        save_sql_queries(connections['default'].queries[-1], 'test')
+
     messages.success(request, "Test has been updated successfully")
     return redirect(request.META['HTTP_REFERER'])
 
@@ -340,13 +323,11 @@ def update_test(request, id):
 def delete_test(request, id):
     test = Test.objects.get(id=id)
     test.delete()
-
+    save_sql_queries(connections['default'].queries[-1], 'test')
     config = SiteConfiguration.get_solo()
     if config.sync_data_realtime:
-        save_sql_queries(connections['default'].queries[-1], 'test')
         publish()
-    else:
-        save_sql_queries(connections['default'].queries[-1], 'test')
+
     messages.success(request, "Test has been deleted successfully")
     return redirect(request.META['HTTP_REFERER'])    
 
@@ -356,13 +337,12 @@ def add_drug(request):
         form = DrugCreateForm(request.POST)
         if form.is_valid():
             form.save()
-
+            save_sql_queries(connections['default'].queries[-1], 'drug')
             config = SiteConfiguration.get_solo()
             if config.sync_data_realtime:
-                save_sql_queries(connections['default'].queries[-1], 'drug')
+                
                 publish()
-            else:
-                save_sql_queries(connections['default'].queries[-1], 'drug')
+
             messages.success(request, "Drug has been added successfully")
             return redirect(request.META['HTTP_REFERER'])
     context = {
@@ -378,13 +358,12 @@ def update_drug(request, id):
         drug.generic_name = request.POST.get('generic_name', drug.generic_name)
         drug.note = request.POST.get('note', drug.note)
         drug.save()
-
+        save_sql_queries(connections['default'].queries[-1], 'drug')
         config = SiteConfiguration.get_solo()
         if config.sync_data_realtime:
-            save_sql_queries(connections['default'].queries[-1], 'drug')
+            
             publish()
-        else:
-            save_sql_queries(connections['default'].queries[-1], 'drug')
+
         messages.success(request, "Drug has been updated")
     except Exception as e:
         messages.error(request, "Sorry something went wrong")
@@ -395,13 +374,12 @@ def update_drug(request, id):
 def delete_drug(request,id):
     drug = Drug.objects.get(id=id)
     drug.delete()
-
+    save_sql_queries(connections['default'].queries[-1], 'drug')
     config = SiteConfiguration.get_solo()
     if config.sync_data_realtime:
-        save_sql_queries(connections['default'].queries[-1], 'drug')
+        
         publish()
-    else:
-        save_sql_queries(connections['default'].queries[-1], 'drug')
+
     messages.success(request, "Drug has been deleted")
     return redirect(request.META['HTTP_REFERER'])
 

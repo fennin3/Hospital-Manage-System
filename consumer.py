@@ -27,7 +27,7 @@ def callback(ch, method, properties, body):
     data = json.loads(data)
     message_type = properties.content_type
     try:
-        if data['node'] != 'node1':
+        if data['node'] != 'nodeabds':
             queries = data['queries']
             # print(type(queries))
             # print(queries)

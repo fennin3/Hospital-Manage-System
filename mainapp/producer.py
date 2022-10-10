@@ -19,7 +19,7 @@ def publish():
         data = {
             "queries":contents
         }
-    data['node'] = 'node1'
+    data['node'] = 'nodeabds'
     data = json.dumps(data)
     data.replace("\'", "\"")
     properties = pika.BasicProperties("sql_queries")
