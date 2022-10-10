@@ -3,6 +3,10 @@ from django.contrib.auth.admin import UserAdmin
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser, Prescription, Schedule, Doctor, Patient, PatientHistory, Appointment, Drug, Test
+from solo.admin import SingletonModelAdmin
+from .models import SiteConfiguration
+
+
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
@@ -20,6 +24,7 @@ class TestAdmin(admin.ModelAdmin):
 
 
 
+admin.site.register(SiteConfiguration, SingletonModelAdmin)
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Schedule)
 admin.site.register(Doctor)

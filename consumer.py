@@ -1,10 +1,13 @@
+import ast
 import os, pika, json, django
 from django.contrib.auth import get_user_model
+from django.db import connection as cn
+
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE",'hms.settings')
 
 django.setup()
-from mainapp.models import (Appointment, Doctor, Patient, Prescription)
+from mainapp.models import (Appointment, Doctor, Drug, Patient, Prescription)
 
 
 
@@ -21,13 +24,28 @@ channel.queue_declare(queue='users', durable=True)
 
 def callback(ch, method, properties, body):
     data = json.loads(body)
+    data = json.loads(data)
     message_type = properties.content_type
-    if data['who'] == 'node1':
-        queries = data['queries']
-        for query in queries:
-            data = json.loads(query)
-    else:
-        print(f"Skipping Now.. Same Node [{data['who']}]")
+    try:
+        if data['node'] != 'node1':
+            queries = data['queries']
+            # print(type(queries))
+            # print(queries)
+            for query in queries: 
+                print("Going....")               
+                data = ast.literal_eval(query)
+                sql = data['sql']
+                model = data['model']
+
+                with cn.cursor() as cursor:
+                    cursor.execute(sql)
+                    
+                print("Done")
+
+        else:
+            print(f"Skipping Now.. Same Node [{data['who']}]")
+    except Exception as e:
+        print("ERROR = ",e)
 
 
 channel.basic_consume(queue='users', on_message_callback=callback, auto_ack=True)

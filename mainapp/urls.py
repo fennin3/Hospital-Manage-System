@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path("",views.home, name="home"),
+    path("process",views.process, name="process"),
     path("login", views.sign_in, name="login"),
     path("logout", views.log_out, name="logout"),
     path("register", views.register, name="register"),
@@ -28,4 +29,5 @@ urlpatterns = [
     path('reports', views.reports, name="reports"),
     path('doctor-settings', views.doctor_settings, name="doctor_settings"),
     path('prescription-settings', views.prescription_settings, name="prescription_settings"),
+    path('data-sync', views.sync_data, name="sync_data"),
 ]

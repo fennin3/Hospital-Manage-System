@@ -1,8 +1,8 @@
 from email.policy import default
-from locale import currency
-from pydoc import describe
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+from solo.models import SingletonModel
+
 
 
 
@@ -122,7 +122,14 @@ class Prescription(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
+class SiteConfiguration(SingletonModel):
+    sync_data_realtime = models.BooleanField(default=False)
 
+    def __str__(self):
+        return "Site Configuration"
+
+    class Meta:
+        verbose_name = "Site Configuration"
     
 
 

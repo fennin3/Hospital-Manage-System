@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'mainapp',
     'mathfilters',
     'fontawesomefree',
-    'django_celery_beat'
+    'django_celery_beat',
+    'solo',
 ]
 
 MIDDLEWARE = [

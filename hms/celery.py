@@ -31,12 +31,12 @@ app.conf.beat_schedule = {
 
     "send_data_to_nodes": {
         "task": "mainapp.producer.publish",
-        "schedule": crontab(hour="6"),
+        "schedule": crontab(minute="2"),
     },
 
-    "send_data_to_aws_rds": {
-        "task": "mainapp.tasks.backup_service",
-        "schedule": crontab(hour='6'),
-    },
+    # "send_data_to_aws_rds": {
+    #     "task": "mainapp.tasks.backup_service",
+    #     "schedule": crontab(hour='6'),
+    # },
 
 }  
