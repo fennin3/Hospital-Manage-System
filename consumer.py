@@ -43,7 +43,7 @@ def callback(ch, method, properties, body):
                 print("Done")
 
         else:
-            print(f"Skipping Now.. Same Node [{data['who']}]")
+            print(f"Skipping Now.. Same Node")
     except Exception as e:
         print("ERROR = ",e)
 

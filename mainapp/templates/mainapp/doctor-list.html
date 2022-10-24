@@ -163,7 +163,7 @@
                     </div>
                 </div>
                 <div class="header-right">
-                    {% if user.authenticated %}
+                    {% if user.is_authenticated %}
                         <div class="fullscreen notification_dropdown">
                             <div class="full">
                                 <a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()">
@@ -263,7 +263,7 @@
                         </div>
                     </div> {% endcomment %}
 
-                    {% if user.authenticated %}
+                    {% if user.is_authenticated %}
                     <div class="my-account-wrapper">
                         <div class="account-wrapper">
                             <div class="account-control">

@@ -1,0 +1,1 @@
+{'sql': 'INSERT INTO "mainapp_drug" ("trade_name", "generic_name", "note", "created_at", "updated_at") SELECT \'Third one\', \'djksdj\', \'djskjdnsjkd\', \'2022-10-12 13:26:22.262144\', \'2022-10-12 13:26:22.262187\' RETURNING "mainapp_drug"."id"', 'time': '0.001', 'model': 'drug'}
